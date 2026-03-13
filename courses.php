@@ -80,11 +80,11 @@ $allRecords = Db::queryAll('SELECT * FROM project_courses');
           <div class="main-menu f-right d-none d-lg-block">
             <nav>
               <ul id="navigation">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="courses.php">Courses</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="index.php">ÚVOD</a></li>
+                <li><a href="about.php">O NÁS</a></li>
+                <li><a href="courses.php">LEKCE</a></li>
+                <li><a href="pricing.php">CENÍK</a></li>
+                <li><a href="gallery.html">GALERIE</a></li>
                 <li><a href="blog.html">Blog</a>
                   <ul class="submenu">
                     <li><a href="blog.html">Blog</a></li>
@@ -92,13 +92,13 @@ $allRecords = Db::queryAll('SELECT * FROM project_courses');
                     <li><a href="elements.html">Elements</a></li>
                   </ul>
                 </li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">KONTAKT</a></li>
               </ul>
             </nav>
           </div>
           <!-- Header-btn -->
           <div class="header-btns d-none d-lg-block f-right">
-            <a href="contact.html" class="btn">Contact me</a>
+            <a href="contact.html" class="btn">KONTAKTUJ NÁS</a>
           </div>
           <!-- Mobile Menu -->
           <div class="col-12">
@@ -141,7 +141,7 @@ $allRecords = Db::queryAll('SELECT * FROM project_courses');
         </div>
       </div>
             <div class="row">
-  <?php
+<?php
   foreach ($allRecords as $record) {
     echo('
 
@@ -152,13 +152,14 @@ $allRecords = Db::queryAll('SELECT * FROM project_courses');
             </div>
             <div class="cat-cap">
               <h5><a href="services.html">'. $record["title"]. '</a></h5>
-              <p>You’ll look at graphs and charts in Task One, how to approach the task </p>
+              <p>'. $record["description"]. '</p>
             </div>
           </div>
         </div>
 
     ');
 }
+?>
 
 
   
@@ -289,16 +290,16 @@ $allRecords = Db::queryAll('SELECT * FROM project_courses');
                   <div class="menu-wrapper menu-wrapper2">
                     <!-- Main-menu -->
                     <div class="main-menu main-menu2 text-center">
-                      <nav>
-                        <ul>
-                          <li><a href="index-2.html">Home</a></li>
-                          <li><a href="about.html">About</a></li>
-                          <li><a href="courses.html">Courses</a></li>
-                          <li><a href="pricing.html">Pricing</a></li>
-                          <li><a href="gallery.html">Gallery</a></li>
-                          <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                      </nav>
+            <nav>
+              <ul id="navigation">
+                <li><a href="index.html">ÚVOD</a></li>
+                <li><a href="about.html">O NÁS</a></li>
+                <li><a href="courses.php">LEKCE</a></li>
+                <li><a href="pricing.php">CENÍK</a></li>
+                <li><a href="gallery.html">GALERIE</a></li>
+                <li><a href="contact.html">KONTAKT</a></li>
+              </ul>
+            </nav>
                     </div>
                   </div>
                 </div>

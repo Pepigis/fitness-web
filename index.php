@@ -14,6 +14,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
+<?php
+include "assets/Db.php";
+
+define('_DB_HOST', 'localhost');
+define('_DB_NAME', 'cernyjo1');
+define('_DB_USER', 'cernyjo1');
+define('_DB_PASSWORD', 'Ew12345678!');
+
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+try {
+    Db::connect(_DB_HOST, _DB_NAME, _DB_USER, _DB_PASSWORD);
+} catch (Exception $ex) {
+    echo "Chyba připojení k databázi: " . $ex->getMessage();
+    exit;
+}
+
+$allRecords = Db::queryAll('SELECT * FROM project_courses');
+$allRecord = Db::queryAll('SELECT * FROM project_pricing');
+
+?>
+
   <!-- CSS here -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -56,11 +81,11 @@
           <div class="main-menu f-right d-none d-lg-block">
             <nav>
               <ul id="navigation">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="courses.html">Courses</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="index.php">ÚVOD</a></li>
+                <li><a href="about.php">O NÁS</a></li>
+                <li><a href="courses.php">LEKCE</a></li>
+                <li><a href="pricing.php">CENÍK</a></li>
+                <li><a href="gallery.html">GALERIE</a></li>
                 <li><a href="blog.html">Blog</a>
                   <ul class="submenu">
                     <li><a href="blog.html">Blog</a></li>
@@ -68,13 +93,13 @@
                     <li><a href="elements.html">Elements</a></li>
                   </ul>
                 </li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">KONTAKT</a></li>
               </ul>
             </nav>
           </div>
           <!-- Header-btn -->
           <div class="header-btns d-none d-lg-block f-right">
-            <a href="contact.html" class="btn">Contact me</a>
+            <a href="contact.html" class="btn">KONTAKTUJ NÁS</a>
           </div>
           <!-- Mobile Menu -->
           <div class="col-12">
@@ -112,6 +137,8 @@
   <section class="traning-categories black-bg">
     <div class="container-fluid">
       <div class="row">
+
+      
         <div class="col-xl-6 col-lg-6">
           <div class="single-topic text-center mb-30">
             <div class="topic-img">
@@ -152,46 +179,34 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="section-tittle text-center mb-55 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".1s">
-            <h2>What I Offer</h2>
+            <h2>CO NABÍZÍME</h2>
           </div>
         </div>
       </div>
       <div class="row">
+
+
+<?php
+  foreach ($allRecords as $record) {
+    echo('
+
         <div class="col-lg-4 col-md-6">
-          <div class="single-cat text-center mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+          <div class="single-cat text-center mb-30">
             <div class="cat-icon">
-              <img src="assets/img/gallery/team1.png" alt="" loading="lazy" decoding="async">
+              <img src="assets/img/gallery/'. $record["image_path"].'" alt="" loading="lazy" decoding="async">
             </div>
             <div class="cat-cap">
-              <h5><a href="services.html">Body Building</a></h5>
-              <p>You’ll look at graphs and charts in Task One, how to approach the task </p>
+              <h5><a href="services.html">'. $record["title"]. '</a></h5>
+              <p>'. $record["description"]. '</p>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="single-cat text-center mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
-            <div class="cat-icon">
-              <img src="assets/img/gallery/team2.png" alt="" loading="lazy" decoding="async">
-            </div>
-            <div class="cat-cap">
-              <h5><a href="services.html">Muscle Gain</a></h5>
-              <p>You’ll look at graphs and charts in Task One, how to approach the task </p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="single-cat text-center mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
-            <div class="cat-icon">
-              <img src="assets/img/gallery/team3.png" alt="" loading="lazy" decoding="async">
-            </div>
-            <div class="cat-cap">
-              <h5><a href="services.html">Weight Loss</a></h5>
-              <p>You’ll look at graphs and charts in Task One, how to approach the task </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+    ');
+}
+?>
+
+
   </section>
   <!-- Services End -->
   <!--? Gallery Area Start -->
@@ -274,172 +289,53 @@
       <div class="row">
         <div class="col-xl-12">
           <div class="section-tittle text-center mb-55 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".1s">
-            <h2>Pricing</h2>
+            <h2>CENÍK</h2>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="properties mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
-            <div class="properties__card">
+
+<?php
+  foreach ($allRecord as $record) {
+    
+    $featuresList = explode(',', $record['features']);
+    
+    echo('
+        <div class="col-lg-4 col-md-6 col-sm-6" style="display: flex;">
+          <div class="properties mb-30" style="width: 100%; display: flex;">
+            <div class="properties__card" style="width: 100%; display: flex; flex-direction: column;">
               <div class="about-icon">
                 <img src="assets/img/icon/price.svg" alt="" loading="lazy" decoding="async">
               </div>
-              <div class="properties__caption">
-                <span class="month">6 month</span>
-                <p class="mb-25">$30/m <span>(Single class)</span></p>
+              
+              <div class="properties__caption" style="display: flex; flex-direction: column; flex-grow: 1;">
+                <span class="month">'. $record['plan_name'] .'</span>
+                <p class="mb-25">'. $record['price'] .' Kč <span>'. $record['period'] .'</span></p>
+    ');
+    
+    foreach ($featuresList as $feature) {
+        echo('
                 <div class="single-features">
                   <div class="features-icon">
                     <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
                   </div>
                   <div class="features-caption">
-                    <p>Free riding </p>
+                    <p>'. trim($feature) .'</p>
                   </div>
                 </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Unlimited equipments</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Personal trainer</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Weight losing classes</p>
-                  </div>
-                </div>
-                <div class="single-features mb-20">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Month to mouth</p>
-                  </div>
-                </div>
-                <a href="#" class="border-btn border-btn2">Join Now</a>
+        ');
+    }
+
+    echo('
+                <a href="#" class="border-btn border-btn2" style="margin-top: auto;">Vybrat plán</a>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="properties mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">
-            <div class="properties__card">
-              <div class="about-icon">
-                <img src="assets/img/icon/price.svg" alt="" loading="lazy" decoding="async">
-              </div>
-              <div class="properties__caption">
-                <span class="month">6 month</span>
-                <p class="mb-25">$30/m <span>(Single class)</span></p>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Free riding </p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Unlimited equipments</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Personal trainer</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Weight losing classes</p>
-                  </div>
-                </div>
-                <div class="single-features mb-20">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Month to mouth</p>
-                  </div>
-                </div>
-                <a href="#" class="border-btn border-btn2">Join Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="properties mb-30 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">
-            <div class="properties__card">
-              <div class="about-icon">
-                <img src="assets/img/icon/price.svg" alt="" loading="lazy" decoding="async">
-              </div>
-              <div class="properties__caption">
-                <span class="month">6 month</span>
-                <p class="mb-25">$30/m <span>(Single class)</span></p>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Free riding </p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Unlimited equipments</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Personal trainer</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Weight losing classes</p>
-                  </div>
-                </div>
-                <div class="single-features mb-20">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Month to mouth</p>
-                  </div>
-                </div>
-                <a href="#" class="border-btn border-btn2">Join Now</a>
-              </div>
-            </div>
-          </div>
+    ');
+  }
+?>
+
         </div>
       </div>
     </div>
@@ -458,7 +354,7 @@
         <!-- section tittle -->
         <div class="section-tittle2 mb-20 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
           <div class="front-text">
-            <h2 class="">About Me</h2>
+            <h2 class="">O MNĚ</h2>
             <p>You’ll look at graphs and charts in Task One, how to approach the task and the language needed
               for a successful answer. You’ll examine Task Two questions and learn how to plan, write and
               check academic essays.</p>
@@ -478,7 +374,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-7 col-md-9 col-sm-10">
           <div class="section-tittle text-center mb-100 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".2s">
-            <h2>From Blog</h2>
+            <h2>Z BLOGU</h2>
           </div>
         </div>
       </div>
@@ -589,16 +485,16 @@
                   <div class="menu-wrapper menu-wrapper2">
                     <!-- Main-menu -->
                     <div class="main-menu main-menu2 text-center">
-                      <nav>
-                        <ul>
-                          <li><a href="index-2.html">Home</a></li>
-                          <li><a href="about.html">About</a></li>
-                          <li><a href="courses.php">Courses</a></li>
-                          <li><a href="pricing.php">Pricing</a></li>
-                          <li><a href="gallery.html">Gallery</a></li>
-                          <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                      </nav>
+            <nav>
+              <ul id="navigation">
+                <li><a href="index.html">ÚVOD</a></li>
+                <li><a href="about.html">O NÁS</a></li>
+                <li><a href="courses.php">LEKCE</a></li>
+                <li><a href="pricing.php">CENÍK</a></li>
+                <li><a href="gallery.html">GALERIE</a></li>
+                <li><a href="contact.html">KONTAKT</a></li>
+              </ul>
+            </nav>
                     </div>
                   </div>
                 </div>

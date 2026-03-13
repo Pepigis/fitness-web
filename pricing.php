@@ -80,11 +80,11 @@ $allRecords = Db::queryAll('SELECT * FROM project_pricing');
           <div class="main-menu f-right d-none d-lg-block">
             <nav>
               <ul id="navigation">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="courses.php">Courses</a></li>
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="index.php">ÚVOD</a></li>
+                <li><a href="about.php">O NÁS</a></li>
+                <li><a href="courses.php">LEKCE</a></li>
+                <li><a href="pricing.php">CENÍK</a></li>
+                <li><a href="gallery.html">GALERIE</a></li>
                 <li><a href="blog.html">Blog</a>
                   <ul class="submenu">
                     <li><a href="blog.html">Blog</a></li>
@@ -92,13 +92,13 @@ $allRecords = Db::queryAll('SELECT * FROM project_pricing');
                     <li><a href="elements.html">Elements</a></li>
                   </ul>
                 </li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">KONTAKT</a></li>
               </ul>
             </nav>
           </div>
           <!-- Header-btn -->
           <div class="header-btns d-none d-lg-block f-right">
-            <a href="contact.html" class="btn">Contact me</a>
+            <a href="contact.html" class="btn">KONTAKTUJ NÁS</a>
           </div>
           <!-- Mobile Menu -->
           <div class="col-12">
@@ -118,7 +118,7 @@ $allRecords = Db::queryAll('SELECT * FROM project_pricing');
         <div class="row">
           <div class="col-xl-12">
             <div class="hero-cap hero-cap2 pt-70">
-              <h2>Pricing</h2>
+              <h2>Ceník</h2>
             </div>
           </div>
         </div>
@@ -132,7 +132,7 @@ $allRecords = Db::queryAll('SELECT * FROM project_pricing');
       <div class="row">
         <div class="col-xl-12">
           <div class="section-tittle text-center mb-55">
-            <h2>Pricing</h2>
+            <h2>CENÍK</h2>
           </div>
         </div>
       </div>
@@ -142,64 +142,42 @@ $allRecords = Db::queryAll('SELECT * FROM project_pricing');
 
 <?php
   foreach ($allRecords as $record) {
+    
+    $featuresList = explode(',', $record['features']);
+    
     echo('
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="properties mb-30">
-            <div class="properties__card">
+        <div class="col-lg-4 col-md-6 col-sm-6" style="display: flex;">
+          <div class="properties mb-30" style="width: 100%; display: flex;">
+            <div class="properties__card" style="width: 100%; display: flex; flex-direction: column;">
               <div class="about-icon">
                 <img src="assets/img/icon/price.svg" alt="" loading="lazy" decoding="async">
               </div>
-              <div class="properties__caption">
+              
+              <div class="properties__caption" style="display: flex; flex-direction: column; flex-grow: 1;">
                 <span class="month">'. $record['plan_name'] .'</span>
-                
                 <p class="mb-25">'. $record['price'] .' Kč <span>'. $record['period'] .'</span></p>
-                
+    ');
+    
+    foreach ($featuresList as $feature) {
+        echo('
                 <div class="single-features">
                   <div class="features-icon">
                     <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
                   </div>
                   <div class="features-caption">
-                    <p>Free riding </p>
+                    <p>'. trim($feature) .'</p>
                   </div>
                 </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Unlimited equipments</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Personal trainer</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Weight losing classes</p>
-                  </div>
-                </div>
-                <div class="single-features mb-20">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Month to mouth</p>
-                  </div>
-                </div>
-                <a href="#" class="border-btn border-btn2">Join Now</a>
+        ');
+    }
+
+    echo('
+                <a href="#" class="border-btn border-btn2" style="margin-top: auto;">Vybrat plán</a>
               </div>
             </div>
           </div>
         </div>
-        ');
+    ');
   }
 ?>
 
@@ -272,16 +250,16 @@ $allRecords = Db::queryAll('SELECT * FROM project_pricing');
                   <div class="menu-wrapper menu-wrapper2">
                     <!-- Main-menu -->
                     <div class="main-menu main-menu2 text-center">
-                      <nav>
-                        <ul>
-                          <li><a href="index-2.html">Home</a></li>
-                          <li><a href="about.html">About</a></li>
-                          <li><a href="courses.html">Courses</a></li>
-                          <li><a href="pricing.html">Pricing</a></li>
-                          <li><a href="gallery.html">Gallery</a></li>
-                          <li><a href="contact.html">Contact</a></li>
-                        </ul>
-                      </nav>
+            <nav>
+              <ul id="navigation">
+                <li><a href="index.html">ÚVOD</a></li>
+                <li><a href="about.html">O NÁS</a></li>
+                <li><a href="courses.php">LEKCE</a></li>
+                <li><a href="pricing.php">CENÍK</a></li>
+                <li><a href="gallery.html">GALERIE</a></li>
+                <li><a href="contact.html">KONTAKT</a></li>
+              </ul>
+            </nav>
                     </div>
                   </div>
                 </div>
