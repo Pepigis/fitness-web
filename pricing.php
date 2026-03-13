@@ -14,6 +14,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
+  <?php
+include "assets/Db.php";
+
+define('_DB_HOST', 'localhost');
+define('_DB_NAME', 'cernyjo1');
+define('_DB_USER', 'cernyjo1');
+define('_DB_PASSWORD', 'Ew12345678!');
+
+
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+try {
+    Db::connect(_DB_HOST, _DB_NAME, _DB_USER, _DB_PASSWORD);
+} catch (Exception $ex) {
+    echo "Chyba připojení k databázi: " . $ex->getMessage();
+    exit;
+}
+
+$allRecords = Db::queryAll('SELECT * FROM project_pricing');
+
+?>
+
   <!-- CSS here -->
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -179,119 +203,6 @@
   }
 ?>
 
-
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="properties mb-30">
-            <div class="properties__card">
-              <div class="about-icon">
-                <img src="assets/img/icon/price.svg" alt="" loading="lazy" decoding="async">
-              </div>
-              <div class="properties__caption">
-                <span class="month">6 month</span>
-                <p class="mb-25">$30/m <span>(Single class)</span></p>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Free riding </p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Unlimited equipments</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Personal trainer</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Weight losing classes</p>
-                  </div>
-                </div>
-                <div class="single-features mb-20">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Month to mouth</p>
-                  </div>
-                </div>
-                <a href="#" class="border-btn border-btn2">Join Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-  
-
-
-        
-        <div class="col-lg-4 col-md-6 col-sm-6">
-          <div class="properties mb-30">
-            <div class="properties__card">
-              <div class="about-icon">
-                <img src="assets/img/icon/price.svg" alt="" loading="lazy" decoding="async">
-              </div>
-              <div class="properties__caption">
-                <span class="month">6 month</span>
-                <p class="mb-25">$30/m <span>(Single class)</span></p>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Free riding </p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Unlimited equipments</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Personal trainer</p>
-                  </div>
-                </div>
-                <div class="single-features">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Weight losing classes</p>
-                  </div>
-                </div>
-                <div class="single-features mb-20">
-                  <div class="features-icon">
-                    <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
-                  </div>
-                  <div class="features-caption">
-                    <p>Month to mouth</p>
-                  </div>
-                </div>
-                <a href="#" class="border-btn border-btn2">Join Now</a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
