@@ -126,8 +126,10 @@
                 <img src="assets/img/icon/price.svg" alt="" loading="lazy" decoding="async">
               </div>
               <div class="properties__caption">
-                <span class="month">6 month</span>
-                <p class="mb-25">$30/m <span>(Single class)</span></p>
+                <span class="month">'. $record['plan_name'] .'</span>
+                
+                <p class="mb-25">'. $record['price'] .' Kč <span>'. $record['period'] .'</span></p>
+                
                 <div class="single-features">
                   <div class="features-icon">
                     <img src="assets/img/icon/check.svg" alt="" loading="lazy" decoding="async">
@@ -173,6 +175,10 @@
             </div>
           </div>
         </div>
+        ');
+  }
+?>
+
 
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="properties mb-30">
@@ -228,9 +234,9 @@
             </div>
           </div>
         </div>
-        ') }
+
   
-?>
+
 
         
         <div class="col-lg-4 col-md-6 col-sm-6">
