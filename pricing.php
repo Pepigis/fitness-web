@@ -112,7 +112,13 @@
           </div>
         </div>
       </div>
+
       <div class="row">
+
+
+<?php
+  foreach ($allRecords as $record) {
+    echo('
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="properties mb-30">
             <div class="properties__card">
@@ -167,6 +173,7 @@
             </div>
           </div>
         </div>
+
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="properties mb-30">
             <div class="properties__card">
@@ -221,6 +228,11 @@
             </div>
           </div>
         </div>
+        ') }
+  
+?>
+
+        
         <div class="col-lg-4 col-md-6 col-sm-6">
           <div class="properties mb-30">
             <div class="properties__card">
