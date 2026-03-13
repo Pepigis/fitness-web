@@ -431,7 +431,7 @@ $allRecord = Db::queryAll('SELECT * FROM project_pricing');
               <img src="assets/img/icon/icon1.svg" alt="" loading="lazy" decoding="async">
             </div>
             <div class="features-caption">
-              <h3>Location</h3>
+              <h3>Lokace</h3>
               <p>You’ll look at graphs and charts in Task One, how to approach </p>
             </div>
           </div>
@@ -442,7 +442,7 @@ $allRecord = Db::queryAll('SELECT * FROM project_pricing');
               <img src="assets/img/icon/icon2.svg" alt="" loading="lazy" decoding="async">
             </div>
             <div class="features-caption">
-              <h3>Phone</h3>
+              <h3>Telefon</h3>
               <p>(90) 277 278 2566</p>
               <p> (78) 267 256 2578</p>
             </div>
